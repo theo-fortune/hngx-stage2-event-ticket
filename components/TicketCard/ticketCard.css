@@ -1,0 +1,43 @@
+.ticket-card {
+  padding: 48px;
+  display: flex;
+  width: 700px;
+  padding: 48px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  border-radius: 40px;
+  border: 1px solid #0e464f;
+  background: #041e23;
+  margin: 0 auto;
+}
+
+.ticket-card__heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.ticket-card__heading-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-self: stretch;
+}
+
+.ticket-card__heading-progress {
+  height: 4px;
+  width: 100%;
+  border-radius: 5px;
+  background: #0e464f;
+}
+
+.ticket-card__heading-progress-bar {
+	width: 30%; /* to be removed */
+  height: 100%;
+  background: #24a0b5;
+	border-radius: 5px;
+}
