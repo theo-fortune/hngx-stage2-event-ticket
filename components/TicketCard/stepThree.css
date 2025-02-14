@@ -1,0 +1,170 @@
+.step-three {
+  display: flex;
+  width: 700px;
+  padding: 48px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+}
+
+.step-three-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.step-three-header h1 {
+  font-family: "Alatsi", serif;
+  color: #fff;
+  font-size: 32px;
+}
+
+.step-three-header p {
+  color: #fafafa;
+}
+
+.step-three-ticket {
+  width: 300px;
+  height: 600px;
+  padding: 20px;
+  border-radius: 0; /* no regular border radius */
+
+  /* Your background can remain as before */
+  background: radial-gradient(
+      50% 36.17% at 50% 103.25%,
+      rgba(36, 160, 181, 0.5) 0%,
+      rgba(36, 160, 181, 0) 100%
+    ),
+    radial-gradient(
+      50% 13.92% at 50% 0%,
+      rgba(36, 160, 181, 0.5) 0%,
+      rgba(36, 160, 181, 0) 100%
+    ),
+    #072c31;
+
+  /* Apply the SVG clipPath */
+  clip-path: url(#ticketClip);
+  -webkit-clip-path: url(#ticketClip);
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;justify-content: space-between;
+
+}
+
+.step-three-ticket__container {
+  padding: 32px 20px;
+}
+
+.step-three-ticket__body {
+  border-radius: 16px;
+  border: 1px solid #24a0b5;
+  background: rgba(3, 30, 33, 0.1);
+  backdrop-filter: blur(2px);
+  width: 100%;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.step-three-ticket__body-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.step-three-ticket__body-header h1 {
+  font-size: 34px;
+  font-family: "Road Rage", serif;
+  color: #fff;
+}
+
+.step-three-ticket__body-header_texts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+}
+
+.step-three-ticket__body-header_texts p {
+  font-size: 10px;
+  color: #fff;
+}
+
+.step-three-ticket__avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 12px;
+  border: 4px solid rgba(36, 160, 181, 0.5);
+}
+
+.step-three-ticket__details {
+  display: flex;
+  padding: 4px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+
+  border-radius: 8px;
+  border: 1px solid #133d44;
+  background: #08343c;
+}
+
+.details-div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.details-div p {
+  font-size: 10px;
+  color: #fff;
+  opacity: 0.33;
+}
+
+.details-div span {
+  font-weight: 400;
+  font-family: "Roboto", serif;
+  color: #fff;
+  font-size: 12px;
+}
+
+.step-three-ticket__details {
+  display: grid;
+  grid-template-columns: repeat(2, 108px);
+  column-gap: 8px;
+  padding: 4px;
+}
+
+.step-three-ticket__details_special-req {
+  grid-column: 1 / -1;
+}
+
+.step-three-ticket__divider {
+  align-self: stretch;
+  width: 100%;
+  height: 4px;
+  border: 2px dotted #041e23;
+}
+
+.step-three-ticket__bar-code {
+  width: 100%;
+  /* height: 60px; */
+  padding: 10px 0;
+  background: #041e23;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.step-three-ticket__bar-code img {
+  width: 100%;
+}

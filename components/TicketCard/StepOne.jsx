@@ -17,7 +17,14 @@ const ButtonsClick = ({ price, type, access, selected, onClick }) => {
   );
 };
 
-const StepOne = ({onNext, onBack}) => {
+const StepOne = ({ onNext, onBack, updateFormData }) => {
+  const handleTicketSelect = (index, type, price) => {
+    setSelectedButton(index);
+    updateFormData({
+      ticketType: type,
+      ticketPrice: price,
+    });
+  };
   const [selectedButton, setSelectedButton] = useState(0);
   const [selectedNumber, setSelectedNumber] = useState(1);
 
@@ -46,21 +53,21 @@ const StepOne = ({onNext, onBack}) => {
             type={"Regular Access"}
             access={"20/52"}
             selected={selectedButton === 0}
-            onClick={() => setSelectedButton(0)}
+            onClick={() => handleTicketSelect(0, "Regular Access", "Free")}
           />
           <ButtonsClick
             price={"$150"}
             type={"VIP Access"}
             access={"20/52"}
             selected={selectedButton === 1}
-            onClick={() => setSelectedButton(1)}
+            onClick={() => handleTicketSelect(1, "VIP Access", 150)}
           />
           <ButtonsClick
             price={"$200"}
             type={"VVIP"}
             access={"20/52"}
             selected={selectedButton === 2}
-            onClick={() => setSelectedButton(2)}
+            onClick={() => handleTicketSelect(2, "VVIP", 200)}
           />
         </div>
       </div>
@@ -69,8 +76,11 @@ const StepOne = ({onNext, onBack}) => {
         <div className="step-one__number-dropdown">
           <select
             value={selectedNumber}
-            onChange={(e) => setSelectedNumber(Number(e.target.value))}
-            className="number-select"
+            onChange={(e) => {
+              const quantity = Number(e.target.value);
+              setSelectedNumber(quantity);
+              updateFormData({ ticketQuantity: quantity }); 
+            }}
           >
             {[1, 2, 3, 4].map((num) => (
               <option key={num} value={num}>

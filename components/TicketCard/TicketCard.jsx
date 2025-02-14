@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import "./ticketCard.css";
 import StepOne from "./StepOne";
@@ -7,6 +7,19 @@ import StepThree from "./StepThree";
 
 const TicketCard = () => {
   const [currentStep, setCurrentStep] = useState(1);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    specialRequest: "",
+    avatar: "/images/default-avatar.png",
+    ticketType: "Regular Access", // Default from StepOne
+    ticketQuantity: 1,
+  });
+
+  const updateFormData = (newData) => {
+    setFormData((prev) => ({ ...prev, ...newData }));
+  };
+
   const steps = 3;
 
   const handleNext = () => {
@@ -23,7 +36,7 @@ const TicketCard = () => {
     const titles = {
       1: "Ticket Selection",
       2: "Attendee Details",
-      3: "", // Empty title for step 3
+      3: "Ready",
     };
     return titles[currentStep];
   };
@@ -50,12 +63,21 @@ const TicketCard = () => {
         )}
 
         {currentStep === 1 && (
-          <StepOne onNext={handleNext} onBack={handleBack} />
+          <StepOne
+            onNext={handleNext}
+            onBack={handleBack}
+            updateFormData={updateFormData}
+          />
         )}
         {currentStep === 2 && (
-          <StepTwo onNext={handleNext} onBack={handleBack} />
+          <StepTwo
+            onNext={handleNext}
+            onBack={handleBack}
+            formData={formData}
+            updateFormData={updateFormData}
+          />
         )}
-        {currentStep === 3 && <StepThree onReset={handleReset} />}
+        {currentStep === 3 && <StepThree {...formData} />}
       </div>
     </article>
   );

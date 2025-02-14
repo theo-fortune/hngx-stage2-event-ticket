@@ -1,15 +1,34 @@
 /* eslint-disable @next/next/no-img-element */
-"use client"
+"use client";
 import React, { useState, useRef } from "react";
 import "./stepTwo.css";
 
-const StepTwo = ({ onNext, onBack }) => {
+const StepTwo = ({ onNext, onBack, formData, updateFormData }) => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef(null);
 
-  const cloudName = "dxu5abgqw"; // From your Cloudinary URL
-  const uploadPreset = "avatar_upload"; // Your created preset name
+  const cloudName = "dxu5abgqw";
+  const uploadPreset = "avatar_upload";
+
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) newErrors.name = "Name is required";
+    if (!formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      newErrors.email = "Invalid email address";
+    }
+    if (!formData.avatar) newErrors.avatar = "Avatar is required";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleNext = () => {
+    if (validateForm()) {
+      onNext();
+    }
+  };
 
   const handleUploadClick = () => {
     fileInputRef.current.click();
@@ -37,6 +56,7 @@ const StepTwo = ({ onNext, onBack }) => {
       if (!response.ok) throw new Error("Upload failed");
 
       const data = await response.json();
+      updateFormData({ avatar: data.secure_url });
       setUploadedImage(data.secure_url);
     } catch (error) {
       console.error("Upload error:", error);
@@ -86,32 +106,42 @@ const StepTwo = ({ onNext, onBack }) => {
 
       <div className="name-input">
         <label>Enter your name</label>
-        <input type="text" required />
+        <input
+          type="text"
+          value={formData.name}
+          onChange={(e) => updateFormData({ name: e.target.value })}
+          required
+        />
+        {errors.name && <span className="error">{errors.name}</span>}
       </div>
 
       <div className="email-input">
         <label>Enter your email</label>
         <div className="email-input__input">
           <img src="/images/envelope.svg" alt="envelope" />
-          <input type="email" placeholder="hello@avioflagos.io" required />
+          <input
+            type="email"
+            value={formData.email}
+            onChange={(e) => updateFormData({ email: e.target.value })}
+            placeholder="hello@avioflagos.io"
+            required
+          />
         </div>
+        {errors.email && <span className="error">{errors.email}</span>}
       </div>
 
       <div className="request-input">
         <label>Special request?</label>
         <textarea
-          name="request"
-          id="request"
-          placeholder="Textarea"
+          value={formData.specialRequest}
+          onChange={(e) => updateFormData({ specialRequest: e.target.value })}
           rows={7}
         ></textarea>
       </div>
 
       <div className="step-two__buttons">
-        <button type="button" onClick={onBack}>
-          Back
-        </button>
-        <button type="button" onClick={onNext} disabled={isUploading}>
+        <button onClick={onBack}>Back</button>
+        <button onClick={handleNext} disabled={isUploading}>
           Next
         </button>
       </div>

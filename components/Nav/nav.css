@@ -35,5 +35,5 @@
   background: #fff;
   padding: 16px 24px;
   gap: 8px;
-  color: #0a0c11;
+  color: #0a0c11 !important;
 }
