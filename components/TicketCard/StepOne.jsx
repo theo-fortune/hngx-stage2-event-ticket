@@ -17,7 +17,7 @@ const ButtonsClick = ({ price, type, access, selected, onClick }) => {
   );
 };
 
-const StepOne = () => {
+const StepOne = ({onNext, onBack}) => {
   const [selectedButton, setSelectedButton] = useState(0);
   const [selectedNumber, setSelectedNumber] = useState(1);
 
@@ -37,7 +37,7 @@ const StepOne = () => {
           <p>March 15, 2025 | 7:00 PM</p>
         </div>
       </div>
-      <hr className="step-one__divider" />
+      <hr className="step-one__divider step-divider" />
       <div className="step-one__type">
         <p>Select Ticket Type:</p>
         <div className="step-one__type-buttons">
@@ -81,8 +81,8 @@ const StepOne = () => {
         </div>
       </div>
       <div className="step-one__buttons">
-        <button>Cancel</button>
-        <button>Next</button>
+        <button onClick={onBack}>Cancel</button>
+        <button onClick={onNext}>Next</button>
       </div>
     </figure>
   );

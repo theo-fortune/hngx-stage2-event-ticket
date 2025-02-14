@@ -159,30 +159,3 @@
   flex-direction: column;
   gap: 8px;
 }
-
-.step-one__buttons {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  align-self: stretch;
-	gap: 24px;
-}
-
-.step-one__buttons button {
-  padding: 12px 24px;
-  font-family: "JejuMyeongjo";
-  flex: 1;
-}
-
-.step-one__buttons button:first-child {
-  border-radius: var(--Radius-reg, 8px);
-  color: #24a0b5;
-  border: 1px solid #24a0b5;
-
-}
-
-.step-one__buttons button:last-child {
-  border-radius: var(--Radius-reg, 8px);
-  background: #24a0b5;
-  color: #fff;
-}

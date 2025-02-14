@@ -23,6 +23,15 @@ button {
   border: none;
 }
 
+input {
+  padding: 12px;
+  border-radius: var(--Radius-reg-2, 12px);
+  border: 1px solid #07373f;
+  outline: none;
+  background: none;
+  color: #fff;
+}
+
 @font-face {
   font-family: "JejuMyeongjo";
   src: url(../app/fonts/JejuMyeongjo-Regular.ttf);
@@ -39,7 +48,9 @@ a {
   text-decoration: none;
 }
 
-p {
+p,
+label,
+input {
   font-family: "Roboto", serif;
 }
 
@@ -50,4 +61,34 @@ p {
 .page-container {
   width: 100%;
   margin: 146px 0;
+}
+
+.step-one__buttons,
+.step-two__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-self: stretch;
+  gap: 24px;
+}
+
+.step-one__buttons button,
+.step-two__buttons button {
+  padding: 12px 24px;
+  font-family: "JejuMyeongjo";
+  flex: 1;
+}
+
+.step-one__buttons button:first-child,
+.step-two__buttons button:first-child {
+  border-radius: var(--Radius-reg, 8px);
+  color: #24a0b5;
+  border: 1px solid #24a0b5;
+}
+
+.step-one__buttons button:last-child,
+.step-two__buttons button:last-child {
+  border-radius: var(--Radius-reg, 8px);
+  background: #24a0b5;
+  color: #fff;
 }
