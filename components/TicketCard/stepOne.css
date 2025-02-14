@@ -74,6 +74,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  align-self: stretch;
   gap: 8px;
 }
 
@@ -86,6 +87,10 @@
   gap: 12px;
   border-radius: 12px;
   border: 2px solid #197686;
+}
+
+.step-one__button.selected {
+  background-color: #12464e !important;
 }
 
 .step-one__type-buttons {
@@ -124,4 +129,60 @@
 
 .step-one__button-type span {
   color: #d9d9d9;
+}
+
+.step-one__number {
+  width: 100%;
+}
+
+.step-one__number-dropdown {
+  display: flex;
+}
+
+.step-one__number-dropdown select {
+  border-radius: var(--Radius-reg-2, 12px);
+  border: 1px solid #07373f;
+  padding: 12px;
+  align-items: center;
+  gap: var(--Radius-reg, 8px);
+  align-self: stretch;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  outline: none;
+}
+
+.step-one__number {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.step-one__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-self: stretch;
+	gap: 24px;
+}
+
+.step-one__buttons button {
+  padding: 12px 24px;
+  font-family: "JejuMyeongjo";
+  flex: 1;
+}
+
+.step-one__buttons button:first-child {
+  border-radius: var(--Radius-reg, 8px);
+  color: #24a0b5;
+  border: 1px solid #24a0b5;
+
+}
+
+.step-one__buttons button:last-child {
+  border-radius: var(--Radius-reg, 8px);
+  background: #24a0b5;
+  color: #fff;
 }

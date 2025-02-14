@@ -1,9 +1,13 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import "./stepOne.css";
 
-const ButtonsClick = ({ price, type, access }) => {
+const ButtonsClick = ({ price, type, access, selected, onClick }) => {
   return (
-    <button className="step-one__button">
+    <button
+      className={`step-one__button ${selected ? "selected" : ""}`}
+      onClick={onClick}
+    >
       <h3>{price}</h3>
       <div className="step-one__button-type">
         <p>{type}</p>
@@ -12,7 +16,11 @@ const ButtonsClick = ({ price, type, access }) => {
     </button>
   );
 };
+
 const StepOne = () => {
+  const [selectedButton, setSelectedButton] = useState(0);
+  const [selectedNumber, setSelectedNumber] = useState(1);
+
   return (
     <figure className="step-one">
       <div className="step-one__heading">
@@ -37,10 +45,44 @@ const StepOne = () => {
             price={"Free"}
             type={"Regular Access"}
             access={"20/52"}
+            selected={selectedButton === 0}
+            onClick={() => setSelectedButton(0)}
           />
-          <ButtonsClick price={"$150"} type={"VIP Access"} access={"20/52"} />
-          <ButtonsClick price={"$200"} type={"VVIP"} access={"20/52"} />
+          <ButtonsClick
+            price={"$150"}
+            type={"VIP Access"}
+            access={"20/52"}
+            selected={selectedButton === 1}
+            onClick={() => setSelectedButton(1)}
+          />
+          <ButtonsClick
+            price={"$200"}
+            type={"VVIP"}
+            access={"20/52"}
+            selected={selectedButton === 2}
+            onClick={() => setSelectedButton(2)}
+          />
         </div>
+      </div>
+      <div className="step-one__number">
+        <p>Number of Tickets</p>
+        <div className="step-one__number-dropdown">
+          <select
+            value={selectedNumber}
+            onChange={(e) => setSelectedNumber(Number(e.target.value))}
+            className="number-select"
+          >
+            {[1, 2, 3, 4].map((num) => (
+              <option key={num} value={num}>
+                {num}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+      <div className="step-one__buttons">
+        <button>Cancel</button>
+        <button>Next</button>
       </div>
     </figure>
   );
