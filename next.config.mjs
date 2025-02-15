@@ -1,11 +1,13 @@
 /** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === "production";
+const repoName = "hngx-stage2-event-ticket";
+
 const nextConfig = {
-  output: "export", // Enables static site generation
-  // Only include basePath if deploying to project site (<user>.github.io/<repo>)
-  basePath: process.env.NODE_ENV === "production" ? "/your-repo-name" : "",
-  assetPrefix: process.env.NODE_ENV === "production" ? "/your-repo-name/" : "",
+  output: "export",
+  basePath: isProd ? `/${repoName}` : "",
+  assetPrefix: isProd ? `/${repoName}/` : "",
   images: {
-    unoptimized: true, // Disable image optimization for static export
+    unoptimized: true,
   },
 };
 
