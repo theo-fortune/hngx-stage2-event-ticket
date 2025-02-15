@@ -3,8 +3,10 @@
 import React, { useEffect, useRef } from "react";
 import JsBarcode from "jsbarcode";
 import "./stepThree.css";
+import html2canvas from "html2canvas";
 
 const StepThree = ({
+  onReset,
   name,
   email,
   specialRequest,
@@ -13,6 +15,7 @@ const StepThree = ({
   ticketQuantity,
 }) => {
   const barcodeRef = useRef(null);
+  const ticketRef = useRef(null);
 
   useEffect(() => {
     if (barcodeRef.current) {
@@ -27,6 +30,26 @@ const StepThree = ({
       });
     }
   }, []);
+
+  const handleDownload = async () => {
+    if (!ticketRef.current) return;
+
+    try {
+      const canvas = await html2canvas(ticketRef.current, {
+        useCORS: true, // Enable cross-origin images
+        logging: true,
+        scale: 2, // Higher resolution
+      });
+
+      const link = document.createElement("a");
+      link.download = `TechFest-Ticket-${Date.now()}.png`;
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    } catch (error) {
+      console.error("Error generating ticket:", error);
+      alert("Error downloading ticket. Please try again.");
+    }
+  };
   return (
     <>
       <svg width="0" height="0">
@@ -64,7 +87,7 @@ const StepThree = ({
             Check your email for a copy or you can <b>download</b>
           </p>
         </div>
-        <div className="step-three-ticket__container">
+        <div className="step-three-ticket__container" ref={ticketRef}>
           <div className="step-three-ticket">
             <div className="step-three-ticket__body">
               <div className="step-three-ticket__body-header">
@@ -76,7 +99,9 @@ const StepThree = ({
               </div>
               <div
                 className="step-three-ticket__avatar"
-                style={{ backgroundImage: `url(${avatar})` }}
+                style={{
+                  backgroundImage: `url(${avatar}?crossorigin=anonymous)`,
+                }}
               ></div>
               <div className="step-three-ticket__details">
                 <div className="step-three-ticket__details_name details-div">
@@ -106,6 +131,10 @@ const StepThree = ({
               <img src="/images/BarCode.svg" alt="barcode" />
             </div>
           </div>
+        </div>
+        <div className="step-three__buttons">
+          <button onClick={onReset}>Book Another Ticket</button>
+          <button onClick={handleDownload}>Download Ticket</button>
         </div>
       </figure>
     </>

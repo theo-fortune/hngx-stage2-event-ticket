@@ -56,7 +56,9 @@ const StepTwo = ({ onNext, onBack, formData, updateFormData }) => {
       if (!response.ok) throw new Error("Upload failed");
 
       const data = await response.json();
-      updateFormData({ avatar: data.secure_url });
+      updateFormData({
+        avatar: data.secure_url + "?crossorigin=anonymous",
+      });
       setUploadedImage(data.secure_url);
     } catch (error) {
       console.error("Upload error:", error);

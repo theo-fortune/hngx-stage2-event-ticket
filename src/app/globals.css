@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Alatsi&family=Road+Rage&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');;
+@import url("https://fonts.googleapis.com/css2?family=Alatsi&family=Road+Rage&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 html,
 body {
@@ -64,7 +64,8 @@ input {
 }
 
 .step-one__buttons,
-.step-two__buttons {
+.step-two__buttons,
+.step-three__buttons {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -73,22 +74,171 @@ input {
 }
 
 .step-one__buttons button,
-.step-two__buttons button {
+.step-two__buttons button,
+.step-three__buttons button {
   padding: 12px 24px;
   font-family: "JejuMyeongjo";
   flex: 1;
 }
 
 .step-one__buttons button:first-child,
-.step-two__buttons button:first-child {
+.step-two__buttons button:first-child,
+.step-three__buttons button:first-child {
   border-radius: var(--Radius-reg, 8px);
   color: #24a0b5;
   border: 1px solid #24a0b5;
 }
 
 .step-one__buttons button:last-child,
-.step-two__buttons button:last-child {
+.step-two__buttons button:last-child,
+.step-three__buttons button:last-child {
   border-radius: var(--Radius-reg, 8px);
   background: #24a0b5;
   color: #fff;
+}
+
+/* Add these media queries to your global CSS */
+@media screen and (max-width: 768px) { /* Tablet */
+  /* General adjustments */
+  .ticket-card {
+    width: 90% !important;
+    padding: 32px !important;
+    border-radius: 32px !important;
+  }
+
+  .nav-links {
+    display: none !important;
+  }
+  
+
+  /* Step One */
+  .step-one__heading-head h1 {
+    font-size: 48px !important;
+    line-height: 1.2;
+  }
+
+  .step-one__type-buttons {
+    flex-direction: column;
+  }
+
+  .step-one__button {
+    width: 100% !important;
+    padding: 16px !important;
+  }
+
+  .step-one__heading-head_info {
+    flex-direction: column;
+    gap: 8px !important;
+  }
+
+  /* Step Two */
+  .step-two__upload-card_upload {
+    width: 100% !important;
+    height: 200px !important;
+  }
+
+  .email-input__input img {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Step Three */
+  .step-three-ticket {
+    width: 100% !important;
+    height: auto !important;
+    padding: 16px !important;
+  }
+
+  .step-three-ticket__avatar {
+    width: 120px !important;
+    height: 120px !important;
+  }
+}
+
+@media screen and (max-width: 480px) { /* Mobile */
+  /* General adjustments */
+  .ticket-card {
+    width: 100% !important;
+    border-radius: 16px !important;
+    padding: 16px !important;
+  }
+
+  .nav {
+    width: 88% !important;
+  }
+
+  /* Step One */
+  .step-one {
+    padding: 16px !important;
+  }
+
+  .step-one__heading-head h1 {
+    font-size: 36px !important;
+  }
+
+  .step-one__heading {
+    padding: 16px !important;
+  }
+
+  .step-one__number-dropdown select {
+    padding: 8px !important;
+  }
+
+  .page-container {
+    padding: 24px;
+  }
+
+  /* Step Two */
+  .step-two {
+    padding: 16px !important;
+    gap: 24px !important;
+  }
+
+  .step-two__upload {
+    padding: 16px !important;
+  }
+
+  .step-two__upload-card_upload {
+    height: 160px !important;
+    padding: 16px !important;
+  }
+
+  /* Step Three */
+  .step-three {
+    width: 100% !important;
+    padding: 16px !important;
+  }
+
+  .step-three-ticket__body-header h1 {
+    font-size: 28px !important;
+  }
+
+  .step-three-ticket__details {
+    grid-template-columns: 1fr !important;
+  }
+
+  .step-three-ticket__avatar {
+    width: 100px !important;
+    height: 100px !important;
+  }
+
+  .step-three__buttons {
+    flex-direction: column;
+    gap: 16px !important;
+  }
+
+  .step-three__buttons button {
+    width: 100%;
+  }
+}
+
+/* Additional responsive fixes */
+@media screen and (max-width: 360px) {
+  .step-one__heading-head_info p {
+    font-size: 14px;
+  }
+
+  .step-three-ticket__body-header_texts p {
+    font-size: 12px;
+  }
 }

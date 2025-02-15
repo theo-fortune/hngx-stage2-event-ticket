@@ -6,9 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "gh-pages -d out"
   },
+  "homepage": "https://theo-fortune.github.io/hngx-stage2-event-ticket",
   "dependencies": {
+    "html2canvas": "^1.4.1",
+    "idb-keyval": "^6.2.1",
     "jsbarcode": "^3.11.6",
     "next": "14.2.24",
     "react": "^18",
@@ -17,6 +21,7 @@
   },
   "devDependencies": {
     "eslint": "^8",
-    "eslint-config-next": "14.2.24"
+    "eslint-config-next": "14.2.24",
+    "gh-pages": "^6.3.0"
   }
 }

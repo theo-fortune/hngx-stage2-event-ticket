@@ -41,3 +41,58 @@
   background: #24a0b5;
   border-radius: 5px;
 }
+
+/* global.css */
+
+@media screen and (max-width: 768px) {
+  .ticket-card {
+    width: 95% !important;
+    padding: 24px !important;
+    border-radius: 24px;
+  }
+
+  .step-one__heading-head h1 {
+    font-size: 42px !important;
+  }
+
+  .step-one__type-buttons {
+    flex-direction: column;
+  }
+
+  .step-one__button {
+    width: 100% !important;
+  }
+
+  .step-two__upload-card_upload {
+    width: 100% !important;
+    height: 200px !important;
+  }
+
+  .step-three-ticket {
+    width: 100% !important;
+    padding: 15px !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .ticket-card {
+    width: 100% !important;
+    border-radius: 0;
+    padding: 16px !important;
+  }
+
+  .step-one__heading-head_info {
+    flex-direction: column;
+    gap: 8px !important;
+  }
+
+  .step-three {
+    width: 100% !important;
+    padding: 16px !important;
+  }
+
+  .step-three__buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+}

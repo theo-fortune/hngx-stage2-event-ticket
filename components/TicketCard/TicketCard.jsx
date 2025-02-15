@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { set, get, del } from "idb-keyval";
 import "./ticketCard.css";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
@@ -12,9 +13,35 @@ const TicketCard = () => {
     email: "",
     specialRequest: "",
     avatar: "/images/default-avatar.png",
-    ticketType: "Regular Access", // Default from StepOne
+    ticketType: "Regular Access",
     ticketQuantity: 1,
   });
+
+  useEffect(() => {
+    const loadSavedData = async () => {
+      try {
+        const savedData = await get("ticketFormData");
+        if (savedData) {
+          setFormData(savedData);
+          setCurrentStep(savedData.currentStep || 1);
+        }
+      } catch (error) {
+        console.error("Error loading saved data:", error);
+      }
+    };
+    loadSavedData();
+  }, []);
+
+  useEffect(() => {
+    const saveData = async () => {
+      try {
+        await set("ticketFormData", { ...formData, currentStep });
+      } catch (error) {
+        console.error("Error saving data:", error);
+      }
+    };
+    saveData();
+  }, [formData, currentStep]);
 
   const updateFormData = (newData) => {
     setFormData((prev) => ({ ...prev, ...newData }));
@@ -30,7 +57,22 @@ const TicketCard = () => {
     if (currentStep > 1) setCurrentStep((prev) => prev - 1);
   };
 
-  const handleReset = () => setCurrentStep(1);
+  const handleReset = async () => {
+    setCurrentStep(1);
+    setFormData({
+      name: "",
+      email: "",
+      specialRequest: "",
+      avatar: "",
+      ticketType: "Regular Access",
+      ticketQuantity: 1,
+    });
+    try {
+      await del("ticketFormData");
+    } catch (error) {
+      console.error("Error clearing data:", error);
+    }
+  };
 
   const getStepTitle = () => {
     const titles = {
@@ -77,7 +119,7 @@ const TicketCard = () => {
             updateFormData={updateFormData}
           />
         )}
-        {currentStep === 3 && <StepThree {...formData} />}
+        {currentStep === 3 && <StepThree {...formData} onReset={handleReset} />}
       </div>
     </article>
   );
